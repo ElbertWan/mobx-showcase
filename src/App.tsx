@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Homepage from "./pages/homepage";
+import { observer } from "mobx-react-lite";
+import { RootStoreContext } from "./stores/RootStoreContext";
+import { makeStore } from "./stores/storeFactory";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RootStoreContext.Provider value={makeStore()}>
+      <div className="App">
+        <header className="App-header">
+          <Homepage />
+        </header>
+      </div>
+    </RootStoreContext.Provider>
   );
 }
 
-export default App;
+export default observer(App);
